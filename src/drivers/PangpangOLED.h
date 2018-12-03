@@ -6,8 +6,8 @@
 #ifndef PANGPANGOLED_H
 #define PANGPANGOLED_H		  	 
 
-#define OLED_SCL 			PTH4									//IIC≤„–Ë≈‰÷√
-#define OLED_SDA 			PTH3									//IIC≤„–Ë≈‰÷√
+#define OLED_SCL 			PTF3									//IIC≤„–Ë≈‰÷√
+#define OLED_SDA 			PTF2									//IIC≤„–Ë≈‰÷√
 #define OLED_SYS_BIT_COUNT              unsigned long
 
 #define OLED_SCL_INIT                   gpio_init(OLED_SCL,1,1);//IIC≤„–Ë≈‰÷√

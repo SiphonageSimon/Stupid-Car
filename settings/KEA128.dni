@@ -28,10 +28,6 @@ MixedMode=1
 [Trace1]
 Enabled=0
 ShowSource=1
-[Log file]
-LoggingEnabled=_ 0
-LogFile=_ ""
-Category=_ 0
 [TermIOLog]
 LoggingEnabled=_ 0
 LogFile=_ ""
@@ -45,6 +41,10 @@ Exclusions=
 Enabled=0
 [CallStackStripe]
 ShowTiming=1
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
 [Disassemble mode]
 mode=1
 [Breakpoints2]
