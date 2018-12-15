@@ -8,3 +8,8 @@
 *.wspos
 /Debug
 /settings
+Debug/Exe/template.out
+*.out
+*.o
+*.xcl
+*.o
