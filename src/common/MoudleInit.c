@@ -1,15 +1,15 @@
 #include "include.h"
 
-/*²¦Âë¿ª¹Ø³õÊ¼»¯*/
+/*ï¿½ï¿½ï¿½ë¿ªï¿½Ø³ï¿½Ê¼ï¿½ï¿½*/
 void key_init(void)
 {
-    gpio_init(PTE6,0 ,0);       //ÓÃÓÚ¹éÒ»»¯
+    gpio_init(PTE6,0 ,0);       //ï¿½ï¿½ï¿½Ú¹ï¿½Ò»ï¿½ï¿½
     gpio_init(PTI5,0 ,0);
     gpio_init(PTI4,0 ,0);
     gpio_init(PTE4,0 ,0);
 }
 
-/*µç¸Ð´«¸ÐÆ÷AD³õÊ¼»¯*/
+/*ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ADï¿½ï¿½Ê¼ï¿½ï¿½*/
 void adc_init(void)                                               
 {
     ADC_Init(ADC0, ADC_12BIT);//PTB10
@@ -20,14 +20,19 @@ void adc_init(void)
     ADC_Init(ADC5, ADC_12BIT);//PTB10
 }
 
-/*µç»ú³õÊ¼»¯*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½*/
 void motor_init(void)
 {
-    gpio_init (PTE3,1,1);//µç»ú×ó³õÊ¼»¯Õý×ª
+    gpio_init (PTE3,1,1);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½×ª
     gpio_init (PTI3,1,0);
-    gpio_init (PTE1,1,1);//µç»úÓÒ³õÊ¼»¯Õý×ª
+    gpio_init (PTE1,1,1);//ï¿½ï¿½ï¿½ï¿½Ò³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½×ª
     gpio_init (PTG7,1,0);
     
-    FTM_PWM_init(CFTM2, FTM_CH3,FTM_PTD1, 16700, 700);//PWM0 PTB3              //µç»ú×ó
-    FTM_PWM_init(CFTM2, FTM_CH4,FTM_PTG6, 16700, 700);//PWM0 PTB2              //µç»úÓÒ
+    FTM_PWM_init(CFTM2, FTM_CH3,FTM_PTD1, 16700, 7000);//PWM0 PTB3              //ï¿½ï¿½ï¿½ï¿½ï¿½
+    FTM_PWM_init(CFTM2, FTM_CH4,FTM_PTG6, 16700, 7000);//PWM0 PTB2              //ï¿½ï¿½ï¿½ï¿½ï¿½
+}
+
+void servo_init(void)
+{
+    FTM_PWM_init(CFTM1, FTM_CH1,FTM_PTC5, 100, SteerMid);
 }

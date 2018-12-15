@@ -2,6 +2,8 @@
 #define AD_AVETIME 10   //均值采样次数
 #define AD_VALUE_1 1000 //归一化精度
 #define AD_ALPHA 0.8
+#define INIT_DSPLY 1    //main中是否显示初始化提示语
+#define ADC_VAL_DSPLY 0 //isr1中是否显示电感数值
 //adc通道选择
 #define ADC0 ADC_CHANNEL_AD4        //PTB0
 #define ADC1 ADC_CHANNEL_AD5        //PTB1

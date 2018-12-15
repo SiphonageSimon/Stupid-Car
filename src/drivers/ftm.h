@@ -153,16 +153,10 @@ typedef enum
 
 #define  Beer_ON          gpio_init (PTG2,1,1);
 #define  Beer_OFF         gpio_init (PTG2,1,0);
-#define SteerMid 1520
+#define SteerMid 1594
 #define GOAL_SPEED 0
-#define TURN_MAX 130
-#define CH1        ad[0]
-#define CH2        ad[1] 
-#define CH3        ad[2]
-#define CH4        error1
-#define CH5        ad[0]
-#define CH6        ad[0]
-#define  K1          gpio_get(PTE6)  
+#define TURN_MAX 300
+
   
   
 /******************************************************************************

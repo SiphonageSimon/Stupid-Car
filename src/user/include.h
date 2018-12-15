@@ -42,6 +42,7 @@
 #include "MPU6050.h"
 #include "Serial_oscilloscope.h"
 #include "8700_2100.h"
+#include "PangpangOLED.h"
 #include "variable.h"
 #include <math.h>
 #endif
