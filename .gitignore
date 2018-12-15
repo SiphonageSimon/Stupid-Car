@@ -1,2 +1,10 @@
+*.out
+*.o
+*.xcl
+*.pbi
+*.dbgdt
+*.bat
+*.wsdt
+*.wspos
 /Debug
 /settings
