@@ -5,7 +5,7 @@
 
 typedef enum  
 {
-  //³õÊ¼»¯Ä¬ÈÏÅäÖÃ       --TXD--      --RXD--     ¿ÉÒÔ¸´ÓÃÆäËûÍ¨µÀ£¬Çë×ÔÐÐÐÞ¸Ä uart_init
+  //åˆå§‹åŒ–é»˜è®¤é…ç½®       --TXD--      --RXD--     å¯ä»¥å¤ç”¨å…¶ä»–é€šé“ï¼Œè¯·è‡ªè¡Œä¿®æ”¹ uart_init
   UART_0 = 0,    //           
   UART_1 = 1,    //           
   UART_2 = 2,    //            

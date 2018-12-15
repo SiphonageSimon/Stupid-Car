@@ -1,24 +1,24 @@
 
 /*LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
-¡¾Æ½    Ì¨¡¿ÁúÇñS9KEAZ128ÖÇÄÜ³µºËĞÄ°å
-¡¾±à    Ğ´¡¿CHIUSIR
-¡¾E-mail  ¡¿chiusir@163.com
-¡¾Èí¼ş°æ±¾¡¿V1.0
-¡¾×îºó¸üĞÂ¡¿2017Äê11ÔÂ5ÈÕ
-¡¾Ïà¹ØĞÅÏ¢²Î¿¼ÏÂÁĞµØÖ·¡¿
-¡¾Íø    Õ¾¡¿http://www.lqist.cn
-¡¾ÌÔ±¦µêÆÌ¡¿http://shop36265907.taobao.com
+ã€å¹³    å°ã€‘é¾™é‚±S9KEAZ128æ™ºèƒ½è½¦æ ¸å¿ƒæ¿
+ã€ç¼–    å†™ã€‘CHIUSIR
+ã€E-mail  ã€‘chiusir@163.com
+ã€è½¯ä»¶ç‰ˆæœ¬ã€‘V1.0
+ã€æœ€åæ›´æ–°ã€‘2017å¹´11æœˆ5æ—¥
+ã€ç›¸å…³ä¿¡æ¯å‚è€ƒä¸‹åˆ—åœ°å€ã€‘
+ã€ç½‘    ç«™ã€‘http://www.lqist.cn
+ã€æ·˜å®åº—é“ºã€‘http://shop36265907.taobao.com
 ------------------------------------------------
-¡¾dev.env.¡¿IAR7.80.4
-¡¾Target  ¡¿S9KEAZ128
-¡¾Crystal ¡¿16.000Mhz
-¡¾busclock¡¿?0.000MHz
-¡¾pllclock¡¿?0.000MHz
+ã€dev.env.ã€‘IAR7.80.4
+ã€Target  ã€‘S9KEAZ128
+ã€Crystal ã€‘16.000Mhz
+ã€busclockã€‘?0.000MHz
+ã€pllclockã€‘?0.000MHz
 QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ*/
 #ifndef __KEY_H__
 #define __KEY_H__
 
-//¶¨ÒåÄ£¿éºÅ
+//å®šä¹‰æ¨¡å—å·
 typedef enum
 {
     KEY0=0,
@@ -36,7 +36,7 @@ typedef enum
 
 
 
-//º¯Êı
+//å‡½æ•°
 extern void   KEY_Init(void);
 extern uint8_t KEY_Read(KEYn_e keyno);
 extern void Test_KEY(void);

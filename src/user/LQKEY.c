@@ -1,18 +1,18 @@
-/*LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
-¡¾Æ½    Ì¨¡¿ÁúÇñS9KEAZ128ÖÇÄÜ³µMINIºËÐÄ°åÄ¸°å
-¡¾±à    Ð´¡¿CHIUSIR
-¡¾E-mail  ¡¿chiusir@163.com
-¡¾Èí¼þ°æ±¾¡¿V1.0
-¡¾×îºó¸üÐÂ¡¿2017Äê11ÔÂ11ÈÕ
-¡¾Ïà¹ØÐÅÏ¢²Î¿¼ÏÂÁÐµØÖ·¡¿
-¡¾Íø    Õ¾¡¿http://www.lqist.cn
-¡¾ÌÔ±¦µêÆÌ¡¿http://shop36265907.taobao.com
+ï»¿/*LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+ã€å¹³    å°ã€‘é¾™é‚±S9KEAZ128æ™ºèƒ½è½¦MINIæ ¸å¿ƒæ¿æ¯æ¿
+ã€ç¼–    å†™ã€‘CHIUSIR
+ã€E-mail  ã€‘chiusir@163.com
+ã€è½¯ä»¶ç‰ˆæœ¬ã€‘V1.0
+ã€æœ€åŽæ›´æ–°ã€‘2017å¹´11æœˆ11æ—¥
+ã€ç›¸å…³ä¿¡æ¯å‚è€ƒä¸‹åˆ—åœ°å€ã€‘
+ã€ç½‘    ç«™ã€‘http://www.lqist.cn
+ã€æ·˜å®åº—é“ºã€‘http://shop36265907.taobao.com
 ------------------------------------------------
-¡¾dev.env.¡¿IAR7.80.4
-¡¾Target  ¡¿S9KEAZ128
-¡¾Crystal ¡¿16.000Mhz
-¡¾busclock¡¿40.000MHz
-¡¾pllclock¡¿40.000MHz
+ã€dev.env.ã€‘IAR7.80.4
+ã€Target  ã€‘S9KEAZ128
+ã€Crystal ã€‘16.000Mhz
+ã€busclockã€‘40.000MHz
+ã€pllclockã€‘40.000MHz
 QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ*/
 
 #include "include.h"
@@ -84,11 +84,11 @@ void KEY1_Init(void)
   gpio_init (PTI3,GPI,HIGH);
   gpio_init (PTE2,GPI,HIGH);
   gpio_init (PTE3,GPI,HIGH);
-  //²¦Âë¿ª¹ØÃ»ÓÐÍâ²¿ÉÏÀ­£¬ËùÒÔÊ¹ÄÜÄÚ²¿ÉÏÀ­
-  PORT->PUE2 |= (uint32)(1<<PTn(PTI2));//Ê¹ÄÜÄÚ²¿ÉÏÀ­
-  PORT->PUE2 |= (uint32)(1<<PTn(PTI3));//Ê¹ÄÜÄÚ²¿ÉÏÀ­
-  PORT->PUE1 |= (uint32)(1<<PTn(PTE2));//Ê¹ÄÜÄÚ²¿ÉÏÀ­
-  PORT->PUE1 |= (uint32)(1<<PTn(PTE3));//Ê¹ÄÜÄÚ²¿ÉÏÀ­
+  //æ‹¨ç å¼€å…³æ²¡æœ‰å¤–éƒ¨ä¸Šæ‹‰ï¼Œæ‰€ä»¥ä½¿èƒ½å†…éƒ¨ä¸Šæ‹‰
+  PORT->PUE2 |= (uint32)(1<<PTn(PTI2));//ä½¿èƒ½å†…éƒ¨ä¸Šæ‹‰
+  PORT->PUE2 |= (uint32)(1<<PTn(PTI3));//ä½¿èƒ½å†…éƒ¨ä¸Šæ‹‰
+  PORT->PUE1 |= (uint32)(1<<PTn(PTE2));//ä½¿èƒ½å†…éƒ¨ä¸Šæ‹‰
+  PORT->PUE1 |= (uint32)(1<<PTn(PTE3));//ä½¿èƒ½å†…éƒ¨ä¸Šæ‹‰
 }
 uint8_t KEY1_Read(KEYn_e keyno)
 {    

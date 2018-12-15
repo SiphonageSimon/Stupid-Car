@@ -1,23 +1,23 @@
 #include "include.h"
 
-//µ¥×Ö½ÚĞ´Èë*******************************************
-unsigned char TX_DATA[4];     //ÏÔÊ¾¾İ»º´æÇø
-unsigned char BUF[10];       //½ÓÊÕÊı¾İ»º´æÇø				 //IICÓÃµ½
-unsigned int A_X,A_Y,A_Z;    //X,Y,ZÖá
-unsigned int G_X,G_Y,G_Z;    //X,Y,ZÖá
-unsigned int M_X,M_Y,M_Z;    //X,Y,ZÖá
+//å•å­—èŠ‚å†™å…¥*******************************************
+unsigned char TX_DATA[4];     //æ˜¾ç¤ºæ®ç¼“å­˜åŒº
+unsigned char BUF[10];       //æ¥æ”¶æ•°æ®ç¼“å­˜åŒº				 //IICç”¨åˆ°
+unsigned int A_X,A_Y,A_Z;    //X,Y,Zè½´
+unsigned int G_X,G_Y,G_Z;    //X,Y,Zè½´
+unsigned int M_X,M_Y,M_Z;    //X,Y,Zè½´
 /*
 unsigned char Single_Write(unsigned char SlaveAddress,unsigned char REG_Address,unsigned char REG_data)		     //void
 {
   MPU_IIC_Start();
-  //·¢ËÍÉè±¸µØÖ·+Ğ´ĞÅºÅ//MPU_IIC_Send_Byte(((REG_Address & 0x0700) >>7) | SlaveAddress & 0xFFFE);//ÉèÖÃ¸ßÆğÊ¼µØÖ·+Æ÷¼şµØÖ· 
+  //å‘é€è®¾å¤‡åœ°å€+å†™ä¿¡å·//MPU_IIC_Send_Byte(((REG_Address & 0x0700) >>7) | SlaveAddress & 0xFFFE);//è®¾ç½®é«˜èµ·å§‹åœ°å€+å™¨ä»¶åœ°å€ 
   MPU_IIC_Send_Byte(SlaveAddress);
-  if(MPU_IIC_Wait_Ack())	//µÈ´ıÓ¦´ğ
+  if(MPU_IIC_Wait_Ack())	//ç­‰å¾…åº”ç­”
   {
     MPU_IIC_Stop();		 
     return 1;		
   }
-  MPU_IIC_Send_Byte(REG_Address );   //ÉèÖÃµÍÆğÊ¼µØÖ·      
+  MPU_IIC_Send_Byte(REG_Address );   //è®¾ç½®ä½èµ·å§‹åœ°å€      
   MPU_IIC_Wait_Ack();	
   MPU_IIC_Send_Byte(REG_data);
   MPU_IIC_Wait_Ack();   
@@ -25,18 +25,18 @@ unsigned char Single_Write(unsigned char SlaveAddress,unsigned char REG_Address,
   return 0;
 }
 
-//µ¥×Ö½Ú¶ÁÈ¡*****************************************
+//å•å­—èŠ‚è¯»å–*****************************************
 unsigned char Single_Read(unsigned char SlaveAddress,unsigned char REG_Address)
 {   
   unsigned char REG_data;     	
   MPU_IIC_Start();
-  MPU_IIC_Send_Byte(SlaveAddress); //I2C_SendByte(((REG_Address & 0x0700) >>7) | REG_Address & 0xFFFE);//ÉèÖÃ¸ßÆğÊ¼µØÖ·+Æ÷¼şµØÖ· 
-  if(MPU_IIC_Wait_Ack())	//µÈ´ıÓ¦´ğ
+  MPU_IIC_Send_Byte(SlaveAddress); //I2C_SendByte(((REG_Address & 0x0700) >>7) | REG_Address & 0xFFFE);//è®¾ç½®é«˜èµ·å§‹åœ°å€+å™¨ä»¶åœ°å€ 
+  if(MPU_IIC_Wait_Ack())	//ç­‰å¾…åº”ç­”
   {
     MPU_IIC_Stop();		 
     return 1;		
   }
-  MPU_IIC_Send_Byte((uint8_t) REG_Address);   //ÉèÖÃµÍÆğÊ¼µØÖ·      
+  MPU_IIC_Send_Byte((uint8_t) REG_Address);   //è®¾ç½®ä½èµ·å§‹åœ°å€      
   MPU_IIC_Wait_Ack();
   MPU_IIC_Send_Byte(SlaveAddress+1);
   MPU_IIC_Wait_Ack();
@@ -48,10 +48,10 @@ unsigned char Single_Read(unsigned char SlaveAddress,unsigned char REG_Address)
   
 }	
 */
-//µÃµ½¼ÓËÙ¶ÈÖµ(Ô­Ê¼Öµ)
-//ax,ay,az:ÍÓÂİÒÇx,y,zÖáµÄÔ­Ê¼¶ÁÊı(´ø·ûºÅ)
-//·µ»ØÖµ:0,³É¹¦
-//    ÆäËû,´íÎó´úÂë
+//å¾—åˆ°åŠ é€Ÿåº¦å€¼(åŸå§‹å€¼)
+//ax,ay,az:é™€èºä»ªx,y,zè½´çš„åŸå§‹è¯»æ•°(å¸¦ç¬¦å·)
+//è¿”å›å€¼:0,æˆåŠŸ
+//    å…¶ä»–,é”™è¯¯ä»£ç 
 uint8_t MPU9250_Get_Accelerometer(short *ax,short *ay,short *az)
 {
   uint8_t buf[6],res;  
@@ -64,10 +64,10 @@ uint8_t MPU9250_Get_Accelerometer(short *ax,short *ay,short *az)
   } 	
   return res;;
 }
-//µÃµ½ÍÓÂİÒÇÖµ(Ô­Ê¼Öµ)
-//gx,gy,gz:ÍÓÂİÒÇx,y,zÖáµÄÔ­Ê¼¶ÁÊı(´ø·ûºÅ)
-//·µ»ØÖµ:0,³É¹¦
-//    ÆäËû,´íÎó´úÂë
+//å¾—åˆ°é™€èºä»ªå€¼(åŸå§‹å€¼)
+//gx,gy,gz:é™€èºä»ªx,y,zè½´çš„åŸå§‹è¯»æ•°(å¸¦ç¬¦å·)
+//è¿”å›å€¼:0,æˆåŠŸ
+//    å…¶ä»–,é”™è¯¯ä»£ç 
 uint8_t MPU9250_Get_Gyroscope(short *gx,short *gy,short *gz)
 {
   uint8_t buf[6],res;  
@@ -80,10 +80,10 @@ uint8_t MPU9250_Get_Gyroscope(short *gx,short *gy,short *gz)
   } 	
   return res;;
 }  
- //µÃµ½µØ´ÅÖµ(Ô­Ê¼Öµ)
-//mx,my,mz:ÍÓÂİÒÇx,y,zÖáµÄÔ­Ê¼¶ÁÊı(´ø·ûºÅ)
-//·µ»ØÖµ:0,³É¹¦
-//    ÆäËû,´íÎó´úÂë
+ //å¾—åˆ°åœ°ç£å€¼(åŸå§‹å€¼)
+//mx,my,mz:é™€èºä»ªx,y,zè½´çš„åŸå§‹è¯»æ•°(å¸¦ç¬¦å·)
+//è¿”å›å€¼:0,æˆåŠŸ
+//    å…¶ä»–,é”™è¯¯ä»£ç 
 uint8_t MPU9250_Get_MAG(short *mx,short *my,short *mz)
 {
   uint8_t buf[6],res;  
@@ -97,8 +97,8 @@ uint8_t MPU9250_Get_MAG(short *mx,short *my,short *mz)
   return res;;
 }
 
-//µÃµ½ÎÂ¶ÈÖµ
-//·µ»ØÖµ:ÎÂ¶ÈÖµ(À©´óÁË100±¶)
+//å¾—åˆ°æ¸©åº¦å€¼
+//è¿”å›å€¼:æ¸©åº¦å€¼(æ‰©å¤§äº†100å€)
 short MPU9250_Get_Temperature(void)
 {
   uint8_t buf[2]; 
@@ -113,48 +113,48 @@ short MPU9250_Get_Temperature(void)
 uint8_t MPU9250_Init(void)
 {
   uint8_t value;
-  MPU_Read_Len(MPU9250_I2C_ADDR,(WHO_AM_I|0x80),1,&value);//»ñÈ¡Æ÷¼şID
+  MPU_Read_Len(MPU9250_I2C_ADDR,(WHO_AM_I|0x80),1,&value);//è·å–å™¨ä»¶ID
   if(value==0x71)
   {
-    MPU_Write_Len(MPU9250_I2C_ADDR,PWR_MGMT_1,1,0X80);  //µçÔ´¹ÜÀí,¸´Î»MPU9250  ÄÚ²¿20M¾§Õñ
-    MPU_Write_Len(MPU9250_I2C_ADDR,SMPLRT_DIV,1,0x07);//ÍÓÂİÒÇ²ÉÑùÂÊ1000/(1+7)=125HZ
-    MPU_Write_Len(MPU9250_I2C_ADDR,CONFIG,1,0X06); //µÍÍ¨ÂË²¨Æ÷ 0x06 5hz
-    MPU_Write_Len(MPU9250_I2C_ADDR,ACCEL_CONFIG,1,0x18); //¼ÓËÙ¶È¼Æ²âÁ¿·¶Î§ 0X18 Õı¸º16g
-    MPU_Write_Len(MPU9250_I2C_ADDR,ACCEL_CONFIG2,1,0x00); //¼ÓËÙ¶È²ÉÑùÆµÂÊ460HZ
+    MPU_Write_Len(MPU9250_I2C_ADDR,PWR_MGMT_1,1,0X80);  //ç”µæºç®¡ç†,å¤ä½MPU9250  å†…éƒ¨20Mæ™¶æŒ¯
+    MPU_Write_Len(MPU9250_I2C_ADDR,SMPLRT_DIV,1,0x07);//é™€èºä»ªé‡‡æ ·ç‡1000/(1+7)=125HZ
+    MPU_Write_Len(MPU9250_I2C_ADDR,CONFIG,1,0X06); //ä½é€šæ»¤æ³¢å™¨ 0x06 5hz
+    MPU_Write_Len(MPU9250_I2C_ADDR,ACCEL_CONFIG,1,0x18); //åŠ é€Ÿåº¦è®¡æµ‹é‡èŒƒå›´ 0X18 æ­£è´Ÿ16g
+    MPU_Write_Len(MPU9250_I2C_ADDR,ACCEL_CONFIG2,1,0x00); //åŠ é€Ÿåº¦é‡‡æ ·é¢‘ç‡460HZ
     return 0;
   }
   return 1;
 }
 */
 /*
-//³õÊ¼»¯MPU9250£¬
+//åˆå§‹åŒ–MPU9250ï¼Œ
 void Init_MPU9250(void)
 {
-MPU_IIC_Init();//³õÊ¼»¯IIC×ÜÏß
-Single_Write(GYRO_ADDRESS,PWR_MGMT_1, 0x00);	//½â³ıĞİÃß×´Ì¬
+MPU_IIC_Init();//åˆå§‹åŒ–IICæ€»çº¿
+Single_Write(GYRO_ADDRESS,PWR_MGMT_1, 0x00);	//è§£é™¤ä¼‘çœ çŠ¶æ€
 Single_Write(GYRO_ADDRESS,SMPLRT_DIV, 0x07);
 Single_Write(GYRO_ADDRESS,CONFIG, 0x06);
 Single_Write(GYRO_ADDRESS,GYRO_CONFIG, 0x18);
 Single_Write(GYRO_ADDRESS,ACCEL_CONFIG, 0x01);
 }
 
-//******¶ÁÈ¡MPU9250Êı¾İ****************************************
+//******è¯»å–MPU9250æ•°æ®****************************************
 void READ_MPU9250_ACCEL(void)
 { 
 
 BUF[0]=Single_Read(ACCEL_ADDRESS,ACCEL_XOUT_L); 
 BUF[1]=Single_Read(ACCEL_ADDRESS,ACCEL_XOUT_H);
 A_X=	(BUF[1]<<8)|BUF[0];
-//A_X/=164; 						   //¶ÁÈ¡¼ÆËãXÖáÊı¾İ
+//A_X/=164; 						   //è¯»å–è®¡ç®—Xè½´æ•°æ®
 
 BUF[2]=Single_Read(ACCEL_ADDRESS,ACCEL_YOUT_L);
 BUF[3]=Single_Read(ACCEL_ADDRESS,ACCEL_YOUT_H);
 A_Y=	(BUF[3]<<8)|BUF[2];
-//A_Y/=164; 						   //¶ÁÈ¡¼ÆËãYÖáÊı¾İ
+//A_Y/=164; 						   //è¯»å–è®¡ç®—Yè½´æ•°æ®
 BUF[4]=Single_Read(ACCEL_ADDRESS,ACCEL_ZOUT_L);
 BUF[5]=Single_Read(ACCEL_ADDRESS,ACCEL_ZOUT_H);
 A_Z=	(BUF[5]<<8)|BUF[4];
-//A_Z/=164; 					       //¶ÁÈ¡¼ÆËãZÖáÊı¾İ
+//A_Z/=164; 					       //è¯»å–è®¡ç®—Zè½´æ•°æ®
 
 }
 
@@ -164,22 +164,22 @@ void READ_MPU9250_GYRO(void)
 BUF[0]=Single_Read(GYRO_ADDRESS,GYRO_XOUT_L); 
 BUF[1]=Single_Read(GYRO_ADDRESS,GYRO_XOUT_H);
 G_X=	(BUF[1]<<8)|BUF[0];
-//G_X/=16.4; 						   //¶ÁÈ¡¼ÆËãXÖáÊı¾İ
+//G_X/=16.4; 						   //è¯»å–è®¡ç®—Xè½´æ•°æ®
 
 BUF[2]=Single_Read(GYRO_ADDRESS,GYRO_YOUT_L);
 BUF[3]=Single_Read(GYRO_ADDRESS,GYRO_YOUT_H);
 G_Y=	(BUF[3]<<8)|BUF[2];
-//G_Y/=16.4; 						   //¶ÁÈ¡¼ÆËãYÖáÊı¾İ
+//G_Y/=16.4; 						   //è¯»å–è®¡ç®—Yè½´æ•°æ®
 BUF[4]=Single_Read(GYRO_ADDRESS,GYRO_ZOUT_L);
 BUF[5]=Single_Read(GYRO_ADDRESS,GYRO_ZOUT_H);
 G_Z=	(BUF[5]<<8)|BUF[4];
-//G_Z/=16.4; 					       //¶ÁÈ¡¼ÆËãZÖáÊı¾İ
+//G_Z/=16.4; 					       //è¯»å–è®¡ç®—Zè½´æ•°æ®
 
 
 // BUF[6]=Single_Read(GYRO_ADDRESS,TEMP_OUT_L); 
 // BUF[7]=Single_Read(GYRO_ADDRESS,TEMP_OUT_H); 
 // T_T=(BUF[7]<<8)|BUF[6];
-// T_T = 35+ ((double) (T_T + 13200)) / 280;// ¶ÁÈ¡¼ÆËã³öÎÂ¶È
+// T_T = 35+ ((double) (T_T + 13200)) / 280;// è¯»å–è®¡ç®—å‡ºæ¸©åº¦
 }
 
 
@@ -196,11 +196,11 @@ M_X=(BUF[1]<<8)|BUF[0];
 BUF[2]=Single_Read(MAG_ADDRESS,MAG_YOUT_L);
 BUF[3]=Single_Read(MAG_ADDRESS,MAG_YOUT_H);
 M_Y=	(BUF[3]<<8)|BUF[2];
-//¶ÁÈ¡¼ÆËãYÖáÊı¾İ
+//è¯»å–è®¡ç®—Yè½´æ•°æ®
 
 BUF[4]=Single_Read(MAG_ADDRESS,MAG_ZOUT_L);
 BUF[5]=Single_Read(MAG_ADDRESS,MAG_ZOUT_H);
 M_Z=	(BUF[5]<<8)|BUF[4];
-//¶ÁÈ¡¼ÆËãZÖáÊı¾İ
+//è¯»å–è®¡ç®—Zè½´æ•°æ®
 }
 */

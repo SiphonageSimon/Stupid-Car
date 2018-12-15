@@ -3,16 +3,16 @@
 uint8_t Write_Byte_2100_8700(uint8_t SlaveID,uint8_t reg,uint8_t data) 				 
 { 
   MPU_IIC_Start(); 
-  MPU_IIC_Send_Byte((SlaveID<<1)|0);//·¢ËÍÆ÷¼þµØÖ·+Ð´ÃüÁî	
-  if(MPU_IIC_Wait_Ack())	//µÈ´ýÓ¦´ð
+  MPU_IIC_Send_Byte((SlaveID<<1)|0);//å‘é€å™¨ä»¶åœ°å€+å†™å‘½ä»¤	
+  if(MPU_IIC_Wait_Ack())	//ç­‰å¾…åº”ç­”
   {
     MPU_IIC_Stop();		 
     return 1;		
   }
-  MPU_IIC_Send_Byte(reg);	//Ð´¼Ä´æÆ÷µØÖ·
-  MPU_IIC_Wait_Ack();		//µÈ´ýÓ¦´ð 
-  MPU_IIC_Send_Byte(data);//·¢ËÍÊý¾Ý
-  if(MPU_IIC_Wait_Ack())	//µÈ´ýACK
+  MPU_IIC_Send_Byte(reg);	//å†™å¯„å­˜å™¨åœ°å€
+  MPU_IIC_Wait_Ack();		//ç­‰å¾…åº”ç­” 
+  MPU_IIC_Send_Byte(data);//å‘é€æ•°æ®
+  if(MPU_IIC_Wait_Ack())	//ç­‰å¾…ACK
   {
     MPU_IIC_Stop();	 
     return 1;		 
@@ -25,28 +25,28 @@ uint8_t Read_Byte_2100_8700(uint8_t SlaveID,uint8_t reg)
 {
   uint8_t res;
   MPU_IIC_Start(); 
-  MPU_IIC_Send_Byte((SlaveID<<1)|0);//·¢ËÍÆ÷¼þµØÖ·+Ð´ÃüÁî	
-  MPU_IIC_Wait_Ack();               //µÈ´ýÓ¦´ð 
-  MPU_IIC_Send_Byte(reg);           //Ð´¼Ä´æÆ÷µØÖ·
-  MPU_IIC_Wait_Ack();               //µÈ´ýÓ¦´ð
+  MPU_IIC_Send_Byte((SlaveID<<1)|0);//å‘é€å™¨ä»¶åœ°å€+å†™å‘½ä»¤	
+  MPU_IIC_Wait_Ack();               //ç­‰å¾…åº”ç­” 
+  MPU_IIC_Send_Byte(reg);           //å†™å¯„å­˜å™¨åœ°å€
+  MPU_IIC_Wait_Ack();               //ç­‰å¾…åº”ç­”
   MPU_IIC_Start();
-  MPU_IIC_Send_Byte((SlaveID<<1)|1);//·¢ËÍÆ÷¼þµØÖ·+¶ÁÃüÁî	
-  MPU_IIC_Wait_Ack();               //µÈ´ýÓ¦´ð 
-  res=MPU_IIC_Read_Byte(0);         //¶ÁÈ¡Êý¾Ý,·¢ËÍnACK 
-  MPU_IIC_Stop();	                //²úÉúÒ»¸öÍ£Ö¹Ìõ¼þ 
+  MPU_IIC_Send_Byte((SlaveID<<1)|1);//å‘é€å™¨ä»¶åœ°å€+è¯»å‘½ä»¤	
+  MPU_IIC_Wait_Ack();               //ç­‰å¾…åº”ç­” 
+  res=MPU_IIC_Read_Byte(0);         //è¯»å–æ•°æ®,å‘é€nACK 
+  MPU_IIC_Stop();	                //äº§ç”Ÿä¸€ä¸ªåœæ­¢æ¡ä»¶ 
   return res;		
 }
 
 void Init_8700_2100()
 {
   MPU_IIC_Init(); 
-  ////////////////////8700³õÊ¼»¯//////////////////////////////  
+  ////////////////////8700åˆå§‹åŒ–//////////////////////////////  
   Write_Byte_2100_8700(FXOS_8700_ADDR,FXOS8700CQ_CTRL_REG1, 0x00);
   Write_Byte_2100_8700(FXOS_8700_ADDR,FXOS8700CQ_CTRL_REG1, 0x0f);
   Write_Byte_2100_8700(FXOS_8700_ADDR,FXOS8700CQ_M_CTRL_REG2,0x20);
   Write_Byte_2100_8700(FXOS_8700_ADDR,FXOS8700CQ_XYZ_DATA_CFG,0x01);
   Write_Byte_2100_8700(FXOS_8700_ADDR,FXOS8700CQ_CTRL_REG1,0x0d);
-  /////////////////////2100³õÊ¼»¯////////////////////////////
+  /////////////////////2100åˆå§‹åŒ–////////////////////////////
   Write_Byte_2100_8700(FX_2100_ADDR,FX_CTRL_REG3, 0x40);
   Write_Byte_2100_8700(FX_2100_ADDR,FX_CTRL_REG1, 0x01);
   time_delay_ms(1);
@@ -70,8 +70,8 @@ void Read_2100_8700(unsigned char slave,unsigned char * p, short * q)
 
 void Test_2100_8700(void)
 {
-  short int accle_x,accle_y,accle_z;	//¼ÓËÙ¶È´«¸ÐÆ÷Ô­Ê¼Êý¾Ý
-  short int gyro_x,gyro_y,gyro_z;	//ÍÓÂÝÒÇÔ­Ê¼Êý¾Ý
+  short int accle_x,accle_y,accle_z;	//åŠ é€Ÿåº¦ä¼ æ„Ÿå™¨åŽŸå§‹æ•°æ®
+  short int gyro_x,gyro_y,gyro_z;	//é™€èžºä»ªåŽŸå§‹æ•°æ®
   uint8_t bit8_data[6];
   short  bit16_data16[3];
   uint16_t a[8];
@@ -81,17 +81,17 @@ void Test_2100_8700(void)
   LCD_Init();
   while(1)
   {
-    //²É¼¯8700Êý¾Ý
-    Read_2100_8700(FXOS_8700_ADDR,bit8_data,bit16_data16);//14Î»¾«¶È
+    //é‡‡é›†8700æ•°æ®
+    Read_2100_8700(FXOS_8700_ADDR,bit8_data,bit16_data16);//14ä½ç²¾åº¦
     accle_x= bit16_data16[0];
     accle_y= bit16_data16[1];
     accle_z= bit16_data16[2];
-    //²É¼¯2100Êý¾Ý
-    Read_2100_8700(FX_2100_ADDR,bit8_data,bit16_data16);//16Î»¾«¶È
+    //é‡‡é›†2100æ•°æ®
+    Read_2100_8700(FX_2100_ADDR,bit8_data,bit16_data16);//16ä½ç²¾åº¦
     gyro_x= bit16_data16[0];
     gyro_y= bit16_data16[1];
     gyro_z= bit16_data16[2];
-    //OLEDÏÔÊ¾
+    //OLEDæ˜¾ç¤º
     sprintf((char*)txt,"ax:%06d",accle_x);
     LCD_P6x8Str(0,0,txt);
     sprintf((char*)txt,"ay:%06d",accle_y);
@@ -104,7 +104,7 @@ void Test_2100_8700(void)
     LCD_P6x8Str(0,4,txt);
     sprintf((char*)txt,"gz:%06d",gyro_z);
     LCD_P6x8Str(0,5,txt);
-    //·¢ËÍµ½ÉÏÎ»»ú
+    //å‘é€åˆ°ä¸Šä½æœº
     a[0]=500;
     a[1]=500;
     a[2]=500;

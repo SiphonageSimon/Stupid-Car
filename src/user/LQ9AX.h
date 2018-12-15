@@ -1,18 +1,18 @@
 /*LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
-¡¾Æ½    Ì¨¡¿ÁúÇñS9KEAZ128ÖÇÄÜ³µºËÐÄ°å
-¡¾±à    Ð´¡¿CHIUSIR
-¡¾E-mail  ¡¿chiusir@163.com
-¡¾Èí¼þ°æ±¾¡¿V1.0
-¡¾×îºó¸üÐÂ¡¿2017Äê11ÔÂ11ÈÕ
-¡¾Ïà¹ØÐÅÏ¢²Î¿¼ÏÂÁÐµØÖ·¡¿
-¡¾Íø    Õ¾¡¿http://www.lqist.cn
-¡¾ÌÔ±¦µêÆÌ¡¿http://shop36265907.taobao.com
+ã€å¹³    å°ã€‘é¾™é‚±S9KEAZ128æ™ºèƒ½è½¦æ ¸å¿ƒæ¿
+ã€ç¼–    å†™ã€‘CHIUSIR
+ã€E-mail  ã€‘chiusir@163.com
+ã€è½¯ä»¶ç‰ˆæœ¬ã€‘V1.0
+ã€æœ€åŽæ›´æ–°ã€‘2017å¹´11æœˆ11æ—¥
+ã€ç›¸å…³ä¿¡æ¯å‚è€ƒä¸‹åˆ—åœ°å€ã€‘
+ã€ç½‘    ç«™ã€‘http://www.lqist.cn
+ã€æ·˜å®åº—é“ºã€‘http://shop36265907.taobao.com
 ------------------------------------------------
-¡¾dev.env.¡¿IAR7.80.4
-¡¾Target  ¡¿S9KEAZ128
-¡¾Crystal ¡¿16.000Mhz
-¡¾busclock¡¿40.000MHz
-¡¾pllclock¡¿40.000MHz
+ã€dev.env.ã€‘IAR7.80.4
+ã€Target  ã€‘S9KEAZ128
+ã€Crystal ã€‘16.000Mhz
+ã€busclockã€‘40.000MHz
+ã€pllclockã€‘40.000MHz
 QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ*/
 
 #ifndef __LQ9AX_H__
@@ -55,8 +55,8 @@ typedef union
   uint16 MYWORD;
   struct
   {
-    uint8 BYTEL;//µÍ8Î»
-    uint8 BYTEH;//¸ß8Î»£¬¸úCODEWARRIOR´ó¶ËÄ£Ê½²»Í¬
+    uint8 BYTEL;//ä½Ž8ä½
+    uint8 BYTEH;//é«˜8ä½ï¼Œè·ŸCODEWARRIORå¤§ç«¯æ¨¡å¼ä¸åŒ
   } MYBYTE;
 }LQ9AXt;
 
@@ -64,8 +64,8 @@ extern uint8 LQ9AX_DAT[19];
 extern void Test_9AX(void);
 extern void TestIIC_9AX(void);
 extern LQ9AXt ACC_X,ACC_Y,ACC_Z,GYRO_X,GYRO_Y,GYRO_Z,MAG_X,MAG_Y,MAG_Z;
-/*********************** UART¹¦ÄÜº¯Êý **************************/
-//³õÊ¼»¯
+/*********************** UARTåŠŸèƒ½å‡½æ•° **************************/
+//åˆå§‹åŒ–
 extern void Init_LQ_9AX(void);
 extern void Update9AX(void);
 extern void Cvt_14bit_Str(char str[],LQ9AXt V2);

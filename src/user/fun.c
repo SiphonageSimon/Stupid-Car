@@ -1,5 +1,5 @@
 #include "include.h"
-//¼òµ¥ÑÓÊ±
+//ç®€å•å»¶æ—¶
 /*void delay_ms(long t)
 {
     while(t--)
@@ -8,19 +8,19 @@
     }
 }
 */
-//32Î»¾ø¶ÔÖµº¯Êı
+//32ä½ç»å¯¹å€¼å‡½æ•°
 int mylabs(int temp_data)
 {
   return(temp_data>0?temp_data:-temp_data);
 }
 
-//16Î»¾ø¶ÔÖµº¯Êı
+//16ä½ç»å¯¹å€¼å‡½æ•°
 int16 myabs(int16 temp_data)
 {
   return(temp_data>0?temp_data:-temp_data);
 }
 
-//32Î»ÏŞ·ùº¯Êı   ½«XÏŞ·ùÔÚ-yµ½+yÖ®¼ä
+//32ä½é™å¹…å‡½æ•°   å°†Xé™å¹…åœ¨-yåˆ°+yä¹‹é—´
 int limit(int x, int y)
 {
     if(x>y)             return(y);
@@ -28,7 +28,7 @@ int limit(int x, int y)
     return(x);
 }
 
-//32Î»ÏŞ·ùº¯Êı   ½«XÏŞ·ùÔÚ aµ½ bÖ®¼ä
+//32ä½é™å¹…å‡½æ•°   å°†Xé™å¹…åœ¨ aåˆ° bä¹‹é—´
 int limit_ab(int x, int a, int b)
 {
     if(x>b)             return(b);

@@ -3,7 +3,7 @@
 
 #include <stdarg.h>
 #include <stdio.h>
-//#include <stdlib.h> //À¬»øIAR
+//#include <stdlib.h> //åƒåœ¾IAR
 #include <SKEAZ1284.h>
 #include "sysinit.h"
 #include "systick.h"
@@ -13,7 +13,7 @@
 #include "io.h"
 #include "uart.h"
 #include "sim.h"
-#include "gpio.h"       //IO¿Ú²Ù×÷
+#include "gpio.h"       //IOå£æ“ä½œ
 #include "pit.h"
 #include "adc.h"
 #include "uart.h"
@@ -31,7 +31,7 @@
 #include "adc.h"
 #include "MoudleInit.h"
 #include "debug.h"
-//ÓÃ»§×Ô¶¨ÒåÍ·ÎÄ¼ş   
+//ç”¨æˆ·è‡ªå®šä¹‰å¤´æ–‡ä»¶   
 #include "LQ12864.h"
 #include "isr.h"   
 #include "LQLED.h"

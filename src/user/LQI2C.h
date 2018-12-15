@@ -1,28 +1,28 @@
 /*LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
-¡¾Æ½    Ì¨¡¿±±¾©ÁúÇñÖÇÄÜ¿Æ¼¼MK66FX1M0VLQ18ºËĞÄ°å
-¡¾±à    Ğ´¡¿CHIUSIR
-¡¾±¸    ×¢¡¿
-¡¾Èí¼ş°æ±¾¡¿V1.0
-¡¾×îºó¸üĞÂ¡¿2016Äê08ÔÂ20ÈÕ
-¡¾Ïà¹ØĞÅÏ¢²Î¿¼ÏÂÁĞµØÖ·¡¿
-¡¾Íø    Õ¾¡¿http://www.lqist.cn
-¡¾ÌÔ±¦µêÆÌ¡¿http://shop36265907.taobao.com
-¡¾½»Á÷ÓÊÏä¡¿chiusir@163.com
+ã€å¹³    å°ã€‘åŒ—äº¬é¾™é‚±æ™ºèƒ½ç§‘æŠ€MK66FX1M0VLQ18æ ¸å¿ƒæ¿
+ã€ç¼–    å†™ã€‘CHIUSIR
+ã€å¤‡    æ³¨ã€‘
+ã€è½¯ä»¶ç‰ˆæœ¬ã€‘V1.0
+ã€æœ€åæ›´æ–°ã€‘2016å¹´08æœˆ20æ—¥
+ã€ç›¸å…³ä¿¡æ¯å‚è€ƒä¸‹åˆ—åœ°å€ã€‘
+ã€ç½‘    ç«™ã€‘http://www.lqist.cn
+ã€æ·˜å®åº—é“ºã€‘http://shop36265907.taobao.com
+ã€äº¤æµé‚®ç®±ã€‘chiusir@163.com
 QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ*/
 
 #ifndef _LQI2C_H_
 #define _LQI2C_H_
 
-/**********************************  IIC(Òı½Å¸´ÓÃ) ***************************************/
+/**********************************  IIC(å¼•è„šå¤ç”¨) ***************************************/
 
-//¶¨Òå¶ÁĞ´Ñ¡Ïî
+//å®šä¹‰è¯»å†™é€‰é¡¹
 typedef enum MSmode
 {
     write =   0x00,  /* Master write  */
     read =   0x01   /* Master read */
 } MSmode;
 
-void  I2C_WriteAddr(uint8 SlaveID, uint8 Addr, uint8 Data);      //¶ÁÈ¡µØÖ·ÀïµÄÄÚÈİ
-uint8  I2C_ReadAddr(uint8 SlaveID, uint8 Addr);                //ÍùµØÖ·ÀïĞ´ÈëÄÚÈİ
+void  I2C_WriteAddr(uint8 SlaveID, uint8 Addr, uint8 Data);      //è¯»å–åœ°å€é‡Œçš„å†…å®¹
+uint8  I2C_ReadAddr(uint8 SlaveID, uint8 Addr);                //å¾€åœ°å€é‡Œå†™å…¥å†…å®¹
 
 #endif

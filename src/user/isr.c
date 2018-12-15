@@ -1,68 +1,68 @@
 #include "include.h"
 int UART4_FLAG=0;
 int EventCount=0,ti=0,in=0;
-//´®¿Ú0½ÓÊÕÖÐ¶Ï·þÎñÀý³Ì
+//ä¸²å£0æŽ¥æ”¶ä¸­æ–­æœåŠ¡ä¾‹ç¨‹
 void UART0_ISR(void)
 {
   uint8_t ReData;
   uint8_t txt[20];
   
-  DisableInterrupts ;//¹Ø×ÜÖÐ¶Ï
+  DisableInterrupts ;//å…³æ€»ä¸­æ–­
   
   ReData = Uart_GetChar(UARTR0);
   sprintf((char*)txt,"UART0_RX: %c \n",ReData);  
   Uart_SendString(UARTR0,txt);
   
-  EnableInterrupts;   //¿ª×ÜÖÐ¶Ï
+  EnableInterrupts;   //å¼€æ€»ä¸­æ–­
 }
 
 
-//´®¿Ú1½ÓÊÕÖÐ¶Ï·þÎñÀý³Ì
+//ä¸²å£1æŽ¥æ”¶ä¸­æ–­æœåŠ¡ä¾‹ç¨‹
 void UART1_ISR(void)
 {
   uint8_t ReData;
   uint8_t txt[20];
   
-  DisableInterrupts ;//¹Ø×ÜÖÐ¶Ï
+  DisableInterrupts ;//å…³æ€»ä¸­æ–­
   
   ReData = Uart_GetChar(UARTR1);
   sprintf((char*)txt,"UART1_RX: %c \n",ReData);  
   Uart_SendString(UARTR1,txt);
   
-  EnableInterrupts;   //¿ª×ÜÖÐ¶Ï
+  EnableInterrupts;   //å¼€æ€»ä¸­æ–­
 }
 
-//´®¿Ú2½ÓÊÕÖÐ¶Ï·þÎñÀý³Ì
+//ä¸²å£2æŽ¥æ”¶ä¸­æ–­æœåŠ¡ä¾‹ç¨‹
 void UART2_ISR(void)
 {
   uint8_t ReData;
   uint8_t txt[20];
   
-  DisableInterrupts ;//¹Ø×ÜÖÐ¶Ï
+  DisableInterrupts ;//å…³æ€»ä¸­æ–­
   
   ReData = Uart_GetChar(UARTR2);
   sprintf((char*)txt,"UART2_RX: %c \n",ReData);  
   Uart_SendString(UARTR2,txt);
   
-  EnableInterrupts;   //¿ª×ÜÖÐ¶Ï
+  EnableInterrupts;   //å¼€æ€»ä¸­æ–­
 }
 
-//¶¨Ê±Æ÷0ÖÐ¶Ïº¯Êý
+//å®šæ—¶å™¨0ä¸­æ–­å‡½æ•°
 void PIT0_ISR(void)
 {
-    DisableInterrupts;                          //¹Ø×ÜÖÐ¶Ï
-    PIT->CHANNEL[0].TFLG |= PIT_TFLG_TIF_MASK;//Çå³ýÖÐ¶Ï±êÖ¾Î»  
-    read_AD(); //¶ÁÈ¡adcÖµ²¢ÂË²¨ºÍ¹éÒ»»¯
-    EnableInterrupts;            //¿ª×ÜÖÐ¶Ï
+    DisableInterrupts;                          //å…³æ€»ä¸­æ–­
+    PIT->CHANNEL[0].TFLG |= PIT_TFLG_TIF_MASK;//æ¸…é™¤ä¸­æ–­æ ‡å¿—ä½  
+    read_AD(); //è¯»å–adcå€¼å¹¶æ»¤æ³¢å’Œå½’ä¸€åŒ–
+    EnableInterrupts;            //å¼€æ€»ä¸­æ–­
   
 }
 
-//¶¨Ê±Æ÷1ÖÐ¶Ïº¯Êý
+//å®šæ—¶å™¨1ä¸­æ–­å‡½æ•°
 void PIT1_ISR(void)
 {
     DisableInterrupts;
-    PIT->CHANNEL[1].TFLG |= PIT_TFLG_TIF_MASK;//Çå³ýÖÐ¶Ï±êÖ¾Î»
-#if ADC_VAL_DSPLY    //½«Áù¸öµç¸ÐµÄ¶ÁÊýÏÔÊ¾ÔÚOLEDÆÁÉÏ£¬ADC_VAL_DSPLYÎ»ÓÚvaluable.h
+    PIT->CHANNEL[1].TFLG |= PIT_TFLG_TIF_MASK;//æ¸…é™¤ä¸­æ–­æ ‡å¿—ä½
+#if ADC_VAL_DSPLY    //å°†å…­ä¸ªç”µæ„Ÿçš„è¯»æ•°æ˜¾ç¤ºåœ¨OLEDå±ä¸Šï¼ŒADC_VAL_DSPLYä½äºŽvaluable.h
     OLED_BufferClear();
     itoa(adc_fine[0], string2_0);
     itoa(adc_fine[1], string2_1);
@@ -84,33 +84,33 @@ void PIT1_ISR(void)
     OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,string2_5,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
     OLED_BufferFlash();
 #endif
-    servo_Ctrl(); //¶æ»ú¿ØÖÆ£¬°üº¬ÌáÏß
+    servo_Ctrl(); //èˆµæœºæŽ§åˆ¶ï¼ŒåŒ…å«æçº¿
     EnableInterrupts; 
 }
 
 
 
-//KBI0ÖÐ¶Ïº¯Êý
+//KBI0ä¸­æ–­å‡½æ•°
 void KBI0_Isr(void)	
 {  
   KBI0->SC |= KBI_SC_KBACK_MASK;       /* clear interrupt flag */
-  uint16_t n = PTn(KBI_PTB5) ;   //PTA0Òý½Å´¥·¢ÖÐ¶Ï 
+  uint16_t n = PTn(KBI_PTB5) ;   //PTA0å¼•è„šè§¦å‘ä¸­æ–­ 
   if(KBI0->SP &(1<<n))
   {
-    //ÓÃ»§´úÂë 
+    //ç”¨æˆ·ä»£ç  
     LED_Ctrl(LED0, LEDRVS);             
   } 
 }
 
-//KBI1ÖÐ¶Ïº¯Êý
+//KBI1ä¸­æ–­å‡½æ•°
 void KBI1_Isr(void)	
 {  
   KBI1->SC |= KBI_SC_KBACK_MASK;                /* clear interrupt flag */
   
-  uint16_t n = PTn(KBI_PTH2) ;   //PTH2Òý½Å´¥·¢ÖÐ¶Ï 
+  uint16_t n = PTn(KBI_PTH2) ;   //PTH2å¼•è„šè§¦å‘ä¸­æ–­ 
   if(KBI1->SP &(1<<n))
   {
-    //ÓÃ»§´úÂë 
+    //ç”¨æˆ·ä»£ç  
     LED_Ctrl(LED1, LEDRVS);             
   }
 }

@@ -14,4 +14,4 @@
 void servo_Ctrl(void);
 void fuzzy_Ctrl(void);
 
-//模糊相关参数
+//variables about fuzzy control

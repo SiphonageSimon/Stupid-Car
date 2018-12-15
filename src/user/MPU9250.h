@@ -1,25 +1,25 @@
 #ifndef __MPU9250_H
 #define __MPU9250_H
  
-// ¶¨ÒåMPU9250ÄÚ²¿µØÖ·
+// å®šä¹‰MPU9250å†…éƒ¨åœ°å€
 //****************************************
-#define SMPLRT_DIV	  0x19  //ÍÓÂİÒÇ²ÉÑùÂÊ£¬µäĞÍÖµ£º0x07(125Hz)
-#define CONFIG	  0x1A  //µÍÍ¨ÂË²¨ÆµÂÊ£¬µäĞÍÖµ£º0x06(5Hz)
-#define GYRO_CONFIG	  0x1B  //ÍÓÂİÒÇ×Ô¼ì¼°²âÁ¿·¶Î§£¬µäĞÍÖµ£º0x18(²»×Ô¼ì£¬2000deg/s)
-#define ACCEL_CONFIG  0x1C  //¼ÓËÙ¼Æ×Ô¼ì¡¢²âÁ¿·¶Î§¼°¸ßÍ¨ÂË²¨ÆµÂÊ£¬µäĞÍÖµ£º0x01(²»×Ô¼ì£¬2G£¬5Hz)
-#define ACCEL_CONFIG2 0X1D  //¼ÓËÙ¶È¼ÆµÍÍ¨ÂË²¨Æ÷ 0x06 5hz
+#define SMPLRT_DIV	  0x19  //é™€èºä»ªé‡‡æ ·ç‡ï¼Œå…¸å‹å€¼ï¼š0x07(125Hz)
+#define CONFIG	  0x1A  //ä½é€šæ»¤æ³¢é¢‘ç‡ï¼Œå…¸å‹å€¼ï¼š0x06(5Hz)
+#define GYRO_CONFIG	  0x1B  //é™€èºä»ªè‡ªæ£€åŠæµ‹é‡èŒƒå›´ï¼Œå…¸å‹å€¼ï¼š0x18(ä¸è‡ªæ£€ï¼Œ2000deg/s)
+#define ACCEL_CONFIG  0x1C  //åŠ é€Ÿè®¡è‡ªæ£€ã€æµ‹é‡èŒƒå›´åŠé«˜é€šæ»¤æ³¢é¢‘ç‡ï¼Œå…¸å‹å€¼ï¼š0x01(ä¸è‡ªæ£€ï¼Œ2Gï¼Œ5Hz)
+#define ACCEL_CONFIG2 0X1D  //åŠ é€Ÿåº¦è®¡ä½é€šæ»¤æ³¢å™¨ 0x06 5hz
 
-#define ACCEL_XOUT_H  0x3B  //¼ÓËÙ¶È¼ÆÊä³öÊı¾İ
+#define ACCEL_XOUT_H  0x3B  //åŠ é€Ÿåº¦è®¡è¾“å‡ºæ•°æ®
 #define ACCEL_XOUT_L  0x3C
 #define ACCEL_YOUT_H  0x3D
 #define ACCEL_YOUT_L  0x3E
 #define ACCEL_ZOUT_H  0x3F
 #define ACCEL_ZOUT_L  0x40
 
-#define TEMP_OUT_H	  0x41  //ÎÂ¶È¼ÆÊä³öÊı¾İ
+#define TEMP_OUT_H	  0x41  //æ¸©åº¦è®¡è¾“å‡ºæ•°æ®
 #define TEMP_OUT_L	  0x42
 
-#define GYRO_XOUT_H	  0x43  //ÍÓÂİÒÇÊä³öÊı¾İ
+#define GYRO_XOUT_H	  0x43  //é™€èºä»ªè¾“å‡ºæ•°æ®
 #define GYRO_XOUT_L	  0x44	
 #define GYRO_YOUT_H	  0x45
 #define GYRO_YOUT_L	  0x46
@@ -27,23 +27,23 @@
 #define GYRO_ZOUT_L	  0x48
 
 		
-#define MAG_XOUT_L	  0x03  //µØ´ÅÊä³öÊı¾İ
+#define MAG_XOUT_L	  0x03  //åœ°ç£è¾“å‡ºæ•°æ®
 #define MAG_XOUT_H	  0x04
 #define MAG_YOUT_L	  0x05
 #define MAG_YOUT_H	  0x06
 #define MAG_ZOUT_L	  0x07
 #define MAG_ZOUT_H	  0x08
 
-#define PWR_MGMT_1    0X6B  //µçÔ´¹ÜÀí1 µäĞÍÖµÎª0x00
-#define PWR_MGMT_2    0X6C  //µçÔ´¹ÜÀí2 µäĞÍÖµÎª0X00
+#define PWR_MGMT_1    0X6B  //ç”µæºç®¡ç†1 å…¸å‹å€¼ä¸º0x00
+#define PWR_MGMT_2    0X6C  //ç”µæºç®¡ç†2 å…¸å‹å€¼ä¸º0X00
  
-#define WHO_AM_I      0X75  //Æ÷¼şID MPU9250Ä¬ÈÏIDÎª0X71
-#define USER_CTRL     0X6A  //ÓÃ»§ÅäÖÃµ±Îª0X10Ê±Ê¹ÓÃSPIÄ£Ê½
+#define WHO_AM_I      0X75  //å™¨ä»¶ID MPU9250é»˜è®¤IDä¸º0X71
+#define USER_CTRL     0X6A  //ç”¨æˆ·é…ç½®å½“ä¸º0X10æ—¶ä½¿ç”¨SPIæ¨¡å¼
 
 //****************************
-#define MPU9250_I2C_ADDR 0X68  //i2cµÄµØÖ· 
-#define GYRO_ADDRESS   0xD0  //ÍÓÂİµØÖ·
-#define MAG_ADDRESS    0x18  //´Å³¡µØÖ·
+#define MPU9250_I2C_ADDR 0X68  //i2cçš„åœ°å€ 
+#define GYRO_ADDRESS   0xD0  //é™€èºåœ°å€
+#define MAG_ADDRESS    0x18  //ç£åœºåœ°å€
 #define ACCEL_ADDRESS  0xD0
 
 //unsigned char Single_Write(unsigned char SlaveAddress,unsigned char REG_Address,unsigned char REG_data);		     //void

@@ -2,38 +2,38 @@
 
 float Kp = 0.4;
 int16_t last_error = 0;
-int16_t error = 0; //Æ«²îÖµ
-//¿ØÖÆ¶æ»ú
-//ÆäÖĞadc0ÎªÖĞ£¬adc1Îª×ó£¬adc4ÎªÓÒ
+int16_t error = 0; //åå·®å€¼
+//æ§åˆ¶èˆµæœº
+//å…¶ä¸­adc0ä¸ºä¸­ï¼Œadc1ä¸ºå·¦ï¼Œadc4ä¸ºå³
 void servo_Ctrl(void)
 {
   static int16_t leftVal, midVal, rightVal;
-  uint8_t newDuty; //×îÖÕÊä³öÕ¼¿Õ±È
-  int16_t LRjudge; //ÅĞ¶ÏÏßÔÚ×ö»¹ÊÇÔÚÓÒ£¬×óÕıÓÒ¸º
-  newDuty = SteerMid; //»ØÖĞ
+  uint8_t newDuty; //æœ€ç»ˆè¾“å‡ºå ç©ºæ¯”
+  int16_t LRjudge; //åˆ¤æ–­çº¿åœ¨åšè¿˜æ˜¯åœ¨å³ï¼Œå·¦æ­£å³è´Ÿ
+  newDuty = SteerMid; //å›ä¸­
   leftVal = adc_fine[AD_LEFT];
   midVal = adc_fine[AD_MID];
   rightVal = adc_fine[AD_RIGHT];
-  last_error = error; //´¢´æÉÏ´ÎerrorÖµ
+  last_error = error; //å‚¨å­˜ä¸Šæ¬¡errorå€¼
   LRjudge = leftVal - rightVal;
   
   if(midVal <= 1000)
   {
     error = 1000 - midVal;
-      if(LRjudge > 0)  //×ó¼õÓÒÎªÕı£¬ÏßÎ»ÓÚ³µÓÒ²à£¬ÓÒ×ª
+      if(LRjudge > 0)  //å·¦å‡å³ä¸ºæ­£ï¼Œçº¿ä½äºè½¦å³ä¾§ï¼Œå³è½¬
     {
       error = error;
     }
-    else              //×ó¼õÓÒÎª¸º£¬ÏßÎ»ÓÚ³µ×ó²à£¬×ó×ª
+    else              //å·¦å‡å³ä¸ºè´Ÿï¼Œçº¿ä½äºè½¦å·¦ä¾§ï¼Œå·¦è½¬
     {
       error = -error;
     }
-    //fuzzy_Ctrl(); //´Ëº¯Êı½öµ÷½ÚKp
+    //fuzzy_Ctrl(); //æ­¤å‡½æ•°ä»…è°ƒèŠ‚Kp
     error *= Kp;
     if(error > TURN_MAX)
       error = TURN_MAX;
   }
-  else                //ÉÏÆÂµÀÊ±Ö»Ê¹ÓÃ×ó¼õÓÒ
+  else                //ä¸Šå¡é“æ—¶åªä½¿ç”¨å·¦å‡å³
   {
     error = LRjudge * Kp;
   }
@@ -41,7 +41,7 @@ void servo_Ctrl(void)
   FTM_PWM_Duty(CFTM1, FTM_CH1, newDuty);
 }
 
-//µ÷Õû¶æ»úµÄk¶øÒÑ£¬²»ÊÇÊ²Ã´Õı¾­Ä£ºı
+//è°ƒæ•´èˆµæœºçš„kè€Œå·²ï¼Œä¸æ˜¯ä»€ä¹ˆæ­£ç»æ¨¡ç³Š
 void fuzzy_Control(void)
 {
   int16_t error_differ;

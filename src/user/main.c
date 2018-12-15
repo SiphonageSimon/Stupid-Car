@@ -111,24 +111,24 @@ void main(void)
 {
   DisableInterrupts ;
   
-  key_init();//对拨码开关进行初始化
-  adc_init();//对adc进行初始化
-  motor_init();//对电机进行初始化
-  servo_init();//对舵机进行初始化
-  OLED_Init();//对OLED与库进行初始化
-  OLED_BufferClear();//初始化后，对画面进行全黑操作，OLED_BufferClear()可进行全白操作
-  OLED_BufferFlashAll();//初始化后，进行一次全屏刷新，防止意外断电导致显示屏残留画像
-#if INIT_DSPLY //显示归一化提示语句
+  key_init();
+  adc_init();
+  motor_init();
+  servo_init();
+  OLED_Init();//OLED initialization
+  OLED_BufferClear();//set black screen after OLED initialization
+  OLED_BufferFlashAll();//flash screen, clear power-off frags
+#if INIT_DSPLY //init hints
   OLED_DrawString8X16(0,0,string0,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
   OLED_DrawString8X16(0,13,string0_1,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
   OLED_BufferFlash();
 #endif
-  AD_value_init(); //初始归一化
-  PIT_Init(PIT_CHANNEL0,2); //初始化isr0
-  PIT_Init(PIT_CHANNEL1,5); //初始化isr1
+  AD_value_init(); 
+  PIT_Init(PIT_CHANNEL0,2); //init isr0
+  PIT_Init(PIT_CHANNEL1,5); //init isr1
   //RTC_Init(RTC_LPOCLK, 1);
   
-  EnableInterrupts; //开总中断
+  EnableInterrupts;
   
   while(1)
   { 

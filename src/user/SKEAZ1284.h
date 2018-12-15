@@ -1,18 +1,18 @@
 /*LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
-¡¾Æ½    Ì¨¡¿ÁúÇñS9KEAZ128ÖÇÄÜ³µMINIºËÐÄ°åÄ¸°å
-¡¾±à    Ð´¡¿FSL/NXP
-¡¾E-mail  ¡¿
-¡¾Èí¼þ°æ±¾¡¿V1.0
-¡¾×îºó¸üÐÂ¡¿2017Äê11ÔÂ11ÈÕ
-¡¾Ïà¹ØÐÅÏ¢²Î¿¼ÏÂÁÐµØÖ·¡¿
-¡¾Íø    Õ¾¡¿http://www.lqist.cn
-¡¾ÌÔ±¦µêÆÌ¡¿http://shop36265907.taobao.com
+ã€å¹³    å°ã€‘é¾™é‚±S9KEAZ128æ™ºèƒ½è½¦MINIæ ¸å¿ƒæ¿æ¯æ¿
+ã€ç¼–    å†™ã€‘FSL/NXP
+ã€E-mail  ã€‘
+ã€è½¯ä»¶ç‰ˆæœ¬ã€‘V1.0
+ã€æœ€åŽæ›´æ–°ã€‘2017å¹´11æœˆ11æ—¥
+ã€ç›¸å…³ä¿¡æ¯å‚è€ƒä¸‹åˆ—åœ°å€ã€‘
+ã€ç½‘    ç«™ã€‘http://www.lqist.cn
+ã€æ·˜å®åº—é“ºã€‘http://shop36265907.taobao.com
 ------------------------------------------------
-¡¾dev.env.¡¿IAR7.80.4
-¡¾Target  ¡¿S9KEAZ128
-¡¾Crystal ¡¿16.000Mhz
-¡¾busclock¡¿40.000MHz
-¡¾pllclock¡¿40.000MHz
+ã€dev.env.ã€‘IAR7.80.4
+ã€Target  ã€‘S9KEAZ128
+ã€Crystal ã€‘16.000Mhz
+ã€busclockã€‘40.000MHz
+ã€pllclockã€‘40.000MHz
 QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ*/
 
 #if !defined(SKEAZ1284_H_)
@@ -1212,7 +1212,7 @@ typedef struct GPIO_Type{
             uint32_t PDOR30: 1;
             uint32_t PDOR31: 1;
         } PDORs;
-      struct                                            // ÓÃÓÚÖ±½Ó¸³ÖµÎ»µÄ  
+      struct                                            // ç”¨äºŽç›´æŽ¥èµ‹å€¼ä½çš„  
         {
             uint8_t Byte0;
             uint8_t Byte1;
@@ -1225,7 +1225,7 @@ typedef struct GPIO_Type{
   __O  uint32_t PTOR;                              /**< Port Toggle Output Register, offset: 0xC */
  union{
   __I  uint32_t PDIR;                              /**< Port Data Input Register, offset: 0x10 */
-   struct                                            // ÓÃÓÚÖ±½Ó¸³ÖµÎ»µÄ   
+   struct                                            // ç”¨äºŽç›´æŽ¥èµ‹å€¼ä½çš„   
         {
             uint32_t PDIR0 : 1;
             uint32_t PDIR1: 1;

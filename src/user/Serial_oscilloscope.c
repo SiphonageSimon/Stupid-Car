@@ -1,17 +1,17 @@
 /************************************************************
-* ÎÄ¼þÃû           £º
-* ¹¦ÄÜ             £º·¢ËÍÊý¾Ýµ½ÉÏÎ»»ú
-* ±¸×¢             £º¹Ù·½Àý³ÌÉÏÐÞ¸Ä
-* ÈÕÆÚ             £º2017-11-20
-* ÊµÑéÆ½Ì¨         £ºÁúÇð KEAZ128ºËÐÄ°å 
-* ×÷Õß             £ºÁúÇð¼¼Êõ 006
-* ÌÔ±¦µê           £ºhttps://longqiu.taobao.com
-* ÁúÇðÖÇÄÜ³µÌÖÂÛÈº £º338766225
+* æ–‡ä»¶å           ï¼š
+* åŠŸèƒ½             ï¼šå‘é€æ•°æ®åˆ°ä¸Šä½æœº
+* å¤‡æ³¨             ï¼šå®˜æ–¹ä¾‹ç¨‹ä¸Šä¿®æ”¹
+* æ—¥æœŸ             ï¼š2017-11-20
+* å®žéªŒå¹³å°         ï¼šé¾™ä¸˜ KEAZ128æ ¸å¿ƒæ¿ 
+* ä½œè€…             ï¼šé¾™ä¸˜æŠ€æœ¯ 006
+* æ·˜å®åº—           ï¼šhttps://longqiu.taobao.com
+* é¾™ä¸˜æ™ºèƒ½è½¦è®¨è®ºç¾¤ ï¼š338766225
 *************************************************************/
 
 #include "include.h"
 
-unsigned char data_to_send[23];         //·¢ËÍ»º´æ
+unsigned char data_to_send[23];         //å‘é€ç¼“å­˜
 //unsigned char data_to_send[16];
 void Data_Send(UART_n uratn,unsigned short int *pst)
 {
@@ -22,8 +22,8 @@ void Data_Send(UART_n uratn,unsigned short int *pst)
   data_to_send[_cnt++]=0xAA;
   data_to_send[_cnt++]=0x02;
   data_to_send[_cnt++]=0;
-  data_to_send[_cnt++]=(unsigned char)(pst[0]>>8);  //¸ß8Î»
-  data_to_send[_cnt++]=(unsigned char)pst[0];  //µÍ8Î»
+  data_to_send[_cnt++]=(unsigned char)(pst[0]>>8);  //é«˜8ä½
+  data_to_send[_cnt++]=(unsigned char)pst[0];  //ä½Ž8ä½
   data_to_send[_cnt++]=(unsigned char)(pst[1]>>8);
   data_to_send[_cnt++]=(unsigned char)pst[1];
   data_to_send[_cnt++]=(unsigned char)(pst[2]>>8);

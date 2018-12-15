@@ -9,7 +9,7 @@
 #define OUT_Z_LSB_REG         0x06
 
 /////////////////2100////////////////////////////
-#define FX_2100_ADDR   0x20  //��ַ
+#define FX_2100_ADDR   0x20  //хпои
 #define FX_READ         0x41
 #define FA_WRITE        0x40
 
