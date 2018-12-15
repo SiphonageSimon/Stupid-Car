@@ -6,10 +6,12 @@
 *.bat
 *.wsdt
 *.wspos
-/Debug
-/settings
+Debug/
+settings/
 Debug/Exe/template.out
 *.out
 *.o
 *.xcl
 *.o
+*.xcl
+*.pbi
