@@ -1,18 +1,18 @@
-"D:\Projects\NXP_autocar\5.OLED移植工程\重写代码ver1+pangpang\src\drivers\debug.c"
+"D:\Projects\NXP_autocar\github_part\electerical_car\src\drivers\debug.c"
 -std=c99
 -ferror-limit=100
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\arm\CMSIS\Include
 -I
-D:\Projects\NXP_autocar\5.OLED移植工程\重写代码ver1+pangpang\src\common
+D:\Projects\NXP_autocar\github_part\electerical_car\src\common
 -I
-D:\Projects\NXP_autocar\5.OLED移植工程\重写代码ver1+pangpang\src\cpu
+D:\Projects\NXP_autocar\github_part\electerical_car\src\cpu
 -I
-D:\Projects\NXP_autocar\5.OLED移植工程\重写代码ver1+pangpang\src\drivers
+D:\Projects\NXP_autocar\github_part\electerical_car\src\drivers
 -I
-D:\Projects\NXP_autocar\5.OLED移植工程\重写代码ver1+pangpang\src\user
+D:\Projects\NXP_autocar\github_part\electerical_car\src\user
 -I
-D:\Projects\NXP_autocar\5.OLED移植工程\重写代码ver1+pangpang\..
+D:\Projects\NXP_autocar\github_part\electerical_car\..
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\arm\inc
 -I
@@ -20,15 +20,15 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\arm\inc\c
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\arm\CMSIS\Include
 -I
-D:\Projects\NXP_autocar\5.OLED移植工程\重写代码ver1+pangpang\src\common
+D:\Projects\NXP_autocar\github_part\electerical_car\src\common
 -I
-D:\Projects\NXP_autocar\5.OLED移植工程\重写代码ver1+pangpang\src\cpu
+D:\Projects\NXP_autocar\github_part\electerical_car\src\cpu
 -I
-D:\Projects\NXP_autocar\5.OLED移植工程\重写代码ver1+pangpang\src\drivers
+D:\Projects\NXP_autocar\github_part\electerical_car\src\drivers
 -I
-D:\Projects\NXP_autocar\5.OLED移植工程\重写代码ver1+pangpang\src\user
+D:\Projects\NXP_autocar\github_part\electerical_car\src\user
 -I
-D:\Projects\NXP_autocar\5.OLED移植工程
+D:\Projects\NXP_autocar\github_part
 -DIAR=1
 -DTRK_KEA128=1
 -DCPU_KEA128=1

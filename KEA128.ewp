@@ -2195,6 +2195,12 @@
       <name>$PROJ_DIR$\src\user\8700_2100.h</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\src\user\control.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\src\user\control.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\src\user\include.h</name>
     </file>
     <file>

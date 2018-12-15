@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "D:\Projects\NXP_autocar\5.OLED移植工程\重写代码ver1+pangpang\settings\KEA128.Debug.general.xcl" --backend -f "D:\Projects\NXP_autocar\5.OLED移植工程\重写代码ver1+pangpang\settings\KEA128.Debug.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "D:\Projects\NXP_autocar\github_part\electerical_car\settings\KEA128.Debug.general.xcl" --backend -f "D:\Projects\NXP_autocar\github_part\electerical_car\settings\KEA128.Debug.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "D:\Projects\NXP_autocar\5.OLED移植工程\重写代码ver1+pangpang\settings\KEA128.Debug.general.xcl" "--debug_file=%~1" --backend -f "D:\Projects\NXP_autocar\5.OLED移植工程\重写代码ver1+pangpang\settings\KEA128.Debug.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.5\common\bin\cspybat" -f "D:\Projects\NXP_autocar\github_part\electerical_car\settings\KEA128.Debug.general.xcl" "--debug_file=%~1" --backend -f "D:\Projects\NXP_autocar\github_part\electerical_car\settings\KEA128.Debug.driver.xcl" 
 
 @echo off 
 :end
