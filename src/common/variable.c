@@ -24,7 +24,11 @@ uint16_t adc_fine[6] = {0};             //惯性滤波后的输出结果
   void itoa(int i, char *string) //itoa函数实现
 {
         int power=0,j=0;
- 
+        if(i < 0)
+        {
+          *string++='-';
+          i = -i;
+        }
         j=i;
         for( power=1;j>10;j/=10)
                 power*=10;

@@ -28,8 +28,8 @@ void motor_init(void)
     gpio_init (PTE1,1,1);//����ҳ�ʼ����ת
     gpio_init (PTG7,1,0);
     
-    FTM_PWM_init(CFTM2, FTM_CH3,FTM_PTD1, 16700, 7000);//PWM0 PTB3              //�����
-    FTM_PWM_init(CFTM2, FTM_CH4,FTM_PTG6, 16700, 7000);//PWM0 PTB2              //�����
+    FTM_PWM_init(CFTM2, FTM_CH3,FTM_PTD1, 16700, 6700);//PWM0 PTB3              //�����
+    FTM_PWM_init(CFTM2, FTM_CH4,FTM_PTG6, 16700, 6700);//PWM0 PTB2              //�����
 }
 
 void servo_init(void)
