@@ -3,7 +3,9 @@
 uint16_t adc_res[6][AD_BUFFER] = {{0}}; //对读数进行归一化后的值
 uint8_t  adc_res_pos = 0;               //数组位置指示
 uint16_t adc_fine[6] = {0};             //惯性滤波后的输出结果
-
+unsigned short OutData[4] = {0};
+uint8_t flag_received = 0;
+uint8_t current_State = FSM_INIT;
 
 //oled显示字符串
   unsigned char string0[] = "Initializing...";

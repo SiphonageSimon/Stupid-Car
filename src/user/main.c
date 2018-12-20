@@ -125,6 +125,7 @@ void main(void)
 #endif
   FTM_PWM_Duty(CFTM1, FTM_CH1, SteerMid);
   AD_value_init(); 
+  uart_init (UARTR2,0, 115200);//uart init TX D7 RX D6
   //PIT_Init(PIT_CHANNEL0,2); //init isr0
   PIT_Init(PIT_CHANNEL1,2); //init isr1
   //RTC_Init(RTC_LPOCLK, 1);
@@ -139,28 +140,42 @@ void main(void)
     //OLED_BufferClear();
     //OLED_BufferFlash();
     //time_delay_ms(30);
-    //servo_Ctrl();
+#if 1 
     OLED_BufferClear();
     itoa(adc_fine[0], string2_0);
     itoa(adc_fine[1], string2_1);
-    itoa(getErrorVal(), string2_2);
-    //itoa(adc_fine[2], string2_2);
+    //itoa(getErrorVal(), string2_2);
+    itoa(adc_fine[2], string2_2);
     itoa(adc_fine[3], string2_3);
     itoa(adc_fine[4], string2_4);
     //itoa(adc_fine[5], string2_5);
-    itoa(getNewDutyVal(), string2_5);
+    //itoa(getNewDutyVal(), string2_5);
     OLED_DrawString8X16(30,42,string2_0,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
     OLED_DrawString8X16(30,21,string2_1,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
     OLED_DrawString8X16(30,0,string2_2,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
     OLED_DrawString8X16(0,42,string2_6,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
     OLED_DrawString8X16(0,21,string2_7,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
-    //OLED_DrawString8X16(0,0,string2_8,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
+    OLED_DrawString8X16(0,0,string2_8,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
     OLED_DrawString8X16(OLED_DRAW_WIDTH_MAX/2,42,string2_9,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
-    //OLED_DrawString8X16(OLED_DRAW_WIDTH_MAX/2,21,string2_10,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
+    OLED_DrawString8X16(OLED_DRAW_WIDTH_MAX/2,21,string2_10,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
     //OLED_DrawString8X16(OLED_DRAW_WIDTH_MAX/2,0,string2_11,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
+    OLED_DrawString8X16(OLED_DRAW_WIDTH_MAX/2,0,"St:",OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
     OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,42,string2_3,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
-    //OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,21,string2_4,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
-    OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,string2_5,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
+    OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,21,string2_4,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
+    //OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,string2_5,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
+    if(current_State == FSM_RAMP)
+      OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,"RAMP!",OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
+    else if(current_State == FSM_STRAIGHT)
+      OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,"ST",OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
+    else if(current_State == FSM_CORNER)
+      OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,"CRNR",OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
+    else if(current_State == FSM_RAMPTOP)
+      OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,"TOP!",OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
     OLED_BufferFlash();
+#endif
+    GetData(0,10,20,30,OutData);
+    OutPut_Data(OutData);
+    Data_Send(UARTR2,OutData);
+    flag_received = 0;
   } 
 }

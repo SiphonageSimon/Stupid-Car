@@ -12,10 +12,21 @@
 #define ADC4 ADC_CHANNEL_AD13       //PTF5
 #define ADC5 ADC_CHANNEL_AD14       //PTF6
 
+
+#define FSM_INIT 0
+#define FSM_STRAIGHT 1
+#define FSM_CORNER 2
+#define FSM_RAMP 3
+#define FSM_S_TURN 4
+#define FSM_OUT_OF_COURSE 5
+#define FSM_RAMPTOP 6
+
+extern uint8_t current_State;
 extern uint16_t adc_res[6][AD_BUFFER];
 extern uint8_t  adc_res_pos;
 extern uint16_t adc_fine[6];
-
+extern uint8_t flag_received;
+extern unsigned short OutData[4];
 extern  unsigned char string0[];
 extern  unsigned char string0_1[];
 extern  unsigned char string1[];

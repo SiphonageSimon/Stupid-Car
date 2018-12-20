@@ -18,7 +18,7 @@ TracePortSize=0x00000000
 StopOnUncaught=_ 0
 StopOnThrow=_ 0
 [DebugChecksum]
-Checksum=-1909515202
+Checksum=-1399965034
 [CodeCoverage]
 Enabled=_ 0
 [CallStack]
@@ -28,6 +28,10 @@ MixedMode=1
 [Trace1]
 Enabled=0
 ShowSource=1
+[Disassemble mode]
+mode=1
+[Breakpoints2]
+Count=0
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
@@ -35,20 +39,6 @@ Category=_ 0
 [TermIOLog]
 LoggingEnabled=_ 0
 LogFile=_ ""
-[DriverProfiling]
-Enabled=0
-Mode=1
-Graph=0
-Symbiont=0
-Exclusions=
-[CallStackLog]
-Enabled=0
-[CallStackStripe]
-ShowTiming=1
-[Disassemble mode]
-mode=1
-[Breakpoints2]
-Count=0
 [Aliases]
 A0=_ "C:\Users\user\Desktop\kea128code\src\common\startup.c" ""
 A1=_ "C:\Users\user\Desktop\kea128code\src\cpu\arm_cm0.c" ""
@@ -60,3 +50,13 @@ A6=_ "E:\大学\第8学期\智能车\良乡\程序6.3\src\user\main.c" ""
 A7=_ "E:\学习资料\飞思卡尔\代码\temp\程序6.3\src\user\main.c" ""
 Count=8
 SuppressDialog=0
+[DriverProfiling]
+Enabled=0
+Mode=1
+Graph=0
+Symbiont=0
+Exclusions=
+[CallStackLog]
+Enabled=0
+[CallStackStripe]
+ShowTiming=1
