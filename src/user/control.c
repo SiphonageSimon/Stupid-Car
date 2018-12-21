@@ -1,37 +1,50 @@
 #include "control.h"
-float kp0 = 0.2;
-float kp1 = 0.37;
-float kp2 = 0.45;
-float kp3 = 0.48;
-int16_t last_error = 0;
-int16_t error = 0; //偏差值
-uint16_t newDuty; //最终输出占空比
-int Spd_Offset = 0;
-int16_t leftVal, midVal, rightVal,leftVerVal,rightVerVal;
 
-//控制舵机
-//其中adc0为中，adc1为左，adc3为右
+float kp[10] = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
+int16_t last_error = 0; //上一次偏差值
+int16_t error = 0;      //提线偏差值
+int16_t newDuty;       //最终输出占空比
+int Spd_Offset = 0;     //差速
+int16_t leftVal, midVal, rightVal,leftVerVal,rightVerVal;
+Threshold threshold;
 void FSM_select(void)//有限状态机跳转
 {
   switch (current_State)
   {
+  case FSM_INIT:
+    threshold.enter_crossroad = 600; //标定各个状态切换阈值
+    threshold.enter_corner = 200;
+    threshold.enter_straight = 100;
+    threshold.no_val = 0;
+    current_State = FSM_STRAIGHT;
+    break;
   case FSM_STRAIGHT:
-    if (midVal >= 1150)
-      current_State = FSM_RAMP;
-    else if((leftVerVal > 200 && rightVerVal < 200) || (leftVerVal < 200 && rightVerVal > 200))
-      current_State = FSM_CORNER;
+    if(leftVerVal > threshold.enter_crossroad && rightVerVal > threshold.enter_crossroad)
+      current_State = FSM_STRAIGHT; //FSM_CROSSROAD;
+    else if(leftVerVal > threshold.enter_corner && rightVerVal < threshold.enter_corner)
+      current_State = FSM_LEFT_CORNER;
+    else if(leftVerVal < threshold.enter_corner && rightVerVal > threshold.enter_corner)
+      current_State = FSM_RIGHT_CORNER;
     break;
-  case FSM_CORNER:
-    if((leftVerVal < 100 && rightVerVal < 100) || (leftVerVal > 600 && rightVerVal > 600))
+  case FSM_LEFT_CORNER:
+    if((leftVerVal < threshold.enter_straight && rightVerVal < threshold.enter_straight))
       current_State = FSM_STRAIGHT;
+    else if(leftVerVal > threshold.enter_crossroad && rightVerVal > threshold.enter_crossroad)
+      current_State = FSM_STRAIGHT; //FSM_CROSSROAD;
     break;
-  case FSM_RAMP:
-    if (midVal < 800)
-      current_State = FSM_RAMPTOP;
-    break;
-  case FSM_RAMPTOP:
-    if (midVal > 1200)
+  case FSM_RIGHT_CORNER:
+    if((leftVerVal < threshold.enter_straight && rightVerVal < threshold.enter_straight))
       current_State = FSM_STRAIGHT;
+    else if(leftVerVal > threshold.enter_crossroad && rightVerVal > threshold.enter_crossroad)
+      current_State = FSM_STRAIGHT; //FSM_CROSSROAD;
+    break;
+  case FSM_S_TURN:
+    break;
+  case FSM_CROSSROAD:
+    if(leftVerVal > threshold.enter_corner && rightVerVal < threshold.enter_corner)
+      current_State = FSM_LEFT_CORNER;
+    else if(leftVerVal < threshold.enter_corner && rightVerVal > threshold.enter_corner)
+      current_State = FSM_RIGHT_CORNER;
     break;
   case FSM_OUT_OF_COURSE:
     break;
@@ -39,13 +52,92 @@ void FSM_select(void)//有限状态机跳转
     break;    
   }
 }
-/*FSM_INIT 0
-#define FSM_STRAIGHT 1
-#define FSM_CORNER 2
-#define FSM_RAMP 3
-#define FSM_S_TURN 4
-#define FSM_OUT_OF_COURSE 5*/
-void servo_Ctrl(void)
+
+void FSM_Ctrl(void)
+{
+  int16_t LRjudge; //判断线在做还是在右，左正右负
+  const float linear_ratio1 = 3.5; //用于线性化的参数
+  const float compensate_ratio0 = 700.0;
+  const float compensate_ratio1 = 0.667;
+  const float compensate_ratio2 = 450.0; //左电感修正系数
+  const float compensate_ratio3 = 650.0; //左电感修正系数
+  newDuty = SteerMid; //回中
+  
+  leftVal = adc_fine[AD_LEFT];
+  midVal = adc_fine[AD_MID];
+  rightVal = adc_fine[AD_RIGHT];
+  leftVerVal = adc_fine[AD_LEFT_VERTICAL];
+  rightVerVal = adc_fine[AD_RIGHT_VERTICAL];
+  
+  last_error = error; //储存上次error值
+  LRjudge = leftVal - rightVal;
+  
+  //提线线性化部分
+  if(midVal > 1000)
+  {
+    error = LRjudge;
+  }
+  else if(leftVal > midVal && leftVal > rightVal)
+  {
+    error = linear_ratio1 * (1000 - midVal) - compensate_ratio1 * (1000 - midVal - compensate_ratio0) - compensate_ratio2;
+  }
+  else if(rightVal > midVal && rightVal > leftVal)
+  {
+    error = linear_ratio1 * (1000 - midVal) - compensate_ratio1 * (1000 - midVal - compensate_ratio0) - compensate_ratio3;
+    error = -error;
+  }
+  else
+  {
+    error = LRjudge;
+  }
+#if LINEAR_TEST
+  if(error < 0)
+    error = -error;
+  if(LRjudge <0)
+    LRjudge = -LRjudge;
+  GetData(error,LRjudge,0,0,OutData);
+#endif
+
+  FSM_select();//状态跳转
+
+  switch(current_State)
+  {
+  case FSM_STRAIGHT:
+    newDuty += error * kp[0];
+    break;
+  case FSM_LEFT_CORNER:
+    if(error > 0)
+      newDuty += error * kp[1];
+    break;
+  case FSM_RIGHT_CORNER:
+    if(error < 0)
+      newDuty += error * kp[1];
+    break;
+  case FSM_S_TURN:
+    break;
+  default:
+    break;
+  }
+  
+  if(newDuty > SteerMid + TURN_MAX)
+    newDuty = SteerMid + TURN_MAX;
+  else if(newDuty < SteerMid - TURN_MAX)
+    newDuty = SteerMid - TURN_MAX;
+  FTM_PWM_Duty(CFTM1, FTM_CH1, newDuty);
+  
+  motor_Ctrl(6800,6800);
+  return;
+}
+
+//速度闭环函数，目前用作单纯速度给定
+void motor_Ctrl(uint16_t left_Spd, uint16_t right_Spd)
+{
+  FTM_PWM_Duty(CFTM2, FTM_CH3, left_Spd);   //PWM0 PTB3
+  FTM_PWM_Duty(CFTM2, FTM_CH4, right_Spd);  //PWM0 PTB2   
+  return;
+}
+
+void servo_Ctrl(void)//烂得一匹
 {
   int16_t LRjudge; //判断线在做还是在右，左正右负
   newDuty = SteerMid; //回中
@@ -80,20 +172,20 @@ void servo_Ctrl(void)
     else if(error < 500)
     {
       //error *= kp2;
-      Spd_Offset = 300;
+      Spd_Offset = 100;
     }
     else
     {
       //error *= kp3;
-      Spd_Offset = 400;
+      Spd_Offset = 200;
     }
     switch(current_State)
     {
     case FSM_STRAIGHT:
-      error *= kp0;
+      error *= kp[0];
       break;
-    case FSM_CORNER:
-      error *= kp3;
+    default:
+      error *= kp[3];
       break;
     }
     if(LRjudge > 0) //左减右为正，线位于车右侧，右转
@@ -108,12 +200,6 @@ void servo_Ctrl(void)
       FTM_PWM_Duty(CFTM2, FTM_CH3, 6800 - Spd_Offset);//PWM0 PTB3              //�����
       FTM_PWM_Duty(CFTM2, FTM_CH4, 6800);//PWM0 PTB2              //�����
     }
-  }
-  else if(current_State == FSM_RAMP || current_State == FSM_RAMPTOP)
-  {
-    error = LRjudge * kp0;
-    FTM_PWM_Duty(CFTM2, FTM_CH3, 8000);//PWM0 PTB3              //�����
-    FTM_PWM_Duty(CFTM2, FTM_CH4, 8000);//PWM0 PTB2              //�����
   }
   if(error > TURN_MAX)
     error = TURN_MAX;

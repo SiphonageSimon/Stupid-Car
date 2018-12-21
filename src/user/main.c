@@ -106,7 +106,7 @@ UART2_TX        I0
 
 
 #include "include.h"
-
+//编译相关宏定义在valuable.h
 void main(void)
 {
   DisableInterrupts ;
@@ -125,7 +125,9 @@ void main(void)
 #endif
   FTM_PWM_Duty(CFTM1, FTM_CH1, SteerMid);
   AD_value_init(); 
+#if SCOPE_SEND
   uart_init (UARTR2,0, 115200);//uart init TX D7 RX D6
+#endif
   //PIT_Init(PIT_CHANNEL0,2); //init isr0
   PIT_Init(PIT_CHANNEL1,2); //init isr1
   //RTC_Init(RTC_LPOCLK, 1);
@@ -140,7 +142,7 @@ void main(void)
     //OLED_BufferClear();
     //OLED_BufferFlash();
     //time_delay_ms(30);
-#if 1 
+#if STATE_VAL_DISPLY
     OLED_BufferClear();
     itoa(adc_fine[0], string2_0);
     itoa(adc_fine[1], string2_1);
@@ -163,19 +165,23 @@ void main(void)
     OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,42,string2_3,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
     OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,21,string2_4,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
     //OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,string2_5,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
-    if(current_State == FSM_RAMP)
-      OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,"RAMP!",OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
-    else if(current_State == FSM_STRAIGHT)
+    if(current_State == FSM_STRAIGHT)
       OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,"ST",OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
-    else if(current_State == FSM_CORNER)
-      OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,"CRNR",OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
-    else if(current_State == FSM_RAMPTOP)
-      OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,"TOP!",OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
+    else if(current_State == FSM_LEFT_CORNER)
+      OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,"LCNR",OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
+    else if(current_State == FSM_RIGHT_CORNER)
+      OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,"RCNR",OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
+    else if(current_State == FSM_S_TURN)
+      OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,"STRN",OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
+    else if(current_State == FSM_CROSSROAD)
+      OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,"XRD",OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
     OLED_BufferFlash();
 #endif
-    GetData(0,10,20,30,OutData);
+#if SCOPE_SEND
+    GetData(adc_fine[0],adc_fine[1],adc_fine[3],30,OutData);
     OutPut_Data(OutData);
     Data_Send(UARTR2,OutData);
     flag_received = 0;
+#endif
   } 
 }

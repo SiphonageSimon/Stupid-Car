@@ -87,7 +87,12 @@ void PIT1_ISR(void)
     OLED_DrawString8X16(30+OLED_DRAW_WIDTH_MAX/2,0,string2_5,OLED_COLOR_WHITE,OLED_FALSE,OLED_ANGLE_0,OLED_FALSE);
     OLED_BufferFlash();
 #endif
+    //控制方法二选一
+    //*/
+    FSM_Ctrl();   //优雅，高级但是没写完
+    /*/
     servo_Ctrl(); //舵机控制，包含提线
+    //*/
     EnableInterrupts; 
 }
 

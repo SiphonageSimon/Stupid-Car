@@ -190,7 +190,7 @@ void AD_value_init(void)
         adc_min[i] = adc_raw[i];
     }
   }
-  current_State = FSM_STRAIGHT;
+  //current_State = FSM_STRAIGHT;
   return;
 }
 
